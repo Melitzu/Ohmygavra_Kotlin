@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Ohmygavra</string>
+    <string name="login_title">Iniciar sesion</string>
+    <string name="login_subtitle">Ingresa tus credenciales para continuar.</string>
+    <string name="email_hint">Correo electronico</string>
+    <string name="password_hint">Contrasena</string>
+    <string name="login_button">Entrar</string>
+    <string name="login_test_user">Usuario de prueba: alumno@ohmygavra.cl / 123456</string>
+</resources>
