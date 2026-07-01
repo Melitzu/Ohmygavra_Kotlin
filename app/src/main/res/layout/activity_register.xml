@@ -14,37 +14,56 @@
         android:padding="24dp">
 
         <TextView
-            android:id="@+id/titleTextView"
+            android:id="@+id/registerTitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/login_title"
+            android:text="@string/register_title"
             android:textColor="@color/text_primary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/subtitleTextView"
+            android:id="@+id/registerSubtitleTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="@string/login_subtitle"
+            android:text="@string/register_subtitle"
             android:textColor="@color/text_secondary"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailInputLayout"
+            android:id="@+id/nameInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28dp"
+            android:hint="@string/name_hint"
+            app:boxStrokeColor="@color/brand_primary"
+            app:startIconDrawable="@android:drawable/ic_menu_edit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerEmailInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
             android:hint="@string/email_hint"
             app:boxStrokeColor="@color/brand_primary"
             app:startIconDrawable="@android:drawable/ic_dialog_email">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailEditText"
+                android:id="@+id/registerEmailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
@@ -53,63 +72,72 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordInputLayout"
+            android:id="@+id/registerPasswordInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:hint="@string/password_hint"
             app:boxStrokeColor="@color/brand_primary"
             app:endIconMode="password_toggle"
             app:startIconDrawable="@android:drawable/ic_lock_lock">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordEditText"
+                android:id="@+id/registerPasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ageInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:hint="@string/age_hint"
+            app:boxStrokeColor="@color/brand_primary"
+            app:startIconDrawable="@android:drawable/ic_menu_myplaces">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ageEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/loginButton"
+            android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="22dp"
             android:enabled="false"
-            android:text="@string/login_button"
+            android:text="@string/register_button"
             android:textAllCaps="false"
             android:textSize="16sp"
             app:cornerRadius="8dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/createAccountButton"
+            android:id="@+id/alreadyHaveAccountButton"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="8dp"
-            android:text="@string/create_account_button"
+            android:text="@string/already_have_account_button"
             android:textAllCaps="false"
             android:textColor="@color/brand_primary" />
 
         <TextView
-            android:id="@+id/statusTextView"
+            android:id="@+id/registerStatusTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:gravity="center"
             android:textColor="@color/text_secondary"
             android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/testUserTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:gravity="center"
-            android:text="@string/login_test_user"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp" />
     </LinearLayout>
 </ScrollView>

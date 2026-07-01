@@ -24,3 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Ohmygavra_Kotlin"
 include(":app")
+include(":backend")

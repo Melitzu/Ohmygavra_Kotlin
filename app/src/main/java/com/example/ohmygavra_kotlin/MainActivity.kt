@@ -1,53 +1,41 @@
 package com.example.ohmygavra_kotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
+import com.example.ohmygavra_kotlin.databinding.ActivityMainBinding
 import com.example.ohmygavra_kotlin.presentation.login.LoginUiState
 import com.example.ohmygavra_kotlin.presentation.login.LoginViewModel
 import com.example.ohmygavra_kotlin.presentation.login.LoginViewModelFactory
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.example.ohmygavra_kotlin.presentation.catalog.CatalogActivity
+import com.example.ohmygavra_kotlin.presentation.register.RegisterActivity
 
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: LoginViewModel by viewModels { LoginViewModelFactory() }
 
-    private lateinit var emailInputLayout: TextInputLayout
-    private lateinit var passwordInputLayout: TextInputLayout
-    private lateinit var emailEditText: TextInputEditText
-    private lateinit var passwordEditText: TextInputEditText
-    private lateinit var loginButton: MaterialButton
-    private lateinit var statusTextView: TextView
+    private lateinit var binding: ActivityMainBinding
+    private var hasNavigatedToCatalog = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        bindViews()
         bindEvents()
         observeState()
     }
 
-    private fun bindViews() {
-        emailInputLayout = findViewById(R.id.emailInputLayout)
-        passwordInputLayout = findViewById(R.id.passwordInputLayout)
-        emailEditText = findViewById(R.id.emailEditText)
-        passwordEditText = findViewById(R.id.passwordEditText)
-        loginButton = findViewById(R.id.loginButton)
-        statusTextView = findViewById(R.id.statusTextView)
-    }
-
     private fun bindEvents() {
-        emailEditText.doAfterTextChanged { viewModel.onEmailChanged(it.toString()) }
-        passwordEditText.doAfterTextChanged { viewModel.onPasswordChanged(it.toString()) }
-        loginButton.setOnClickListener { viewModel.onLoginClicked() }
-        passwordEditText.setOnEditorActionListener { _, actionId, _ ->
+        binding.emailEditText.doAfterTextChanged { viewModel.onEmailChanged(it.toString()) }
+        binding.passwordEditText.doAfterTextChanged { viewModel.onPasswordChanged(it.toString()) }
+        binding.loginButton.setOnClickListener { viewModel.onLoginClicked() }
+        binding.createAccountButton.setOnClickListener { navigateToRegister() }
+        binding.passwordEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.onLoginClicked()
                 true
@@ -64,24 +52,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun render(state: LoginUiState) {
-        loginButton.isEnabled = state.isLoginEnabled
-        emailInputLayout.error = state.emailError
-        passwordInputLayout.error = state.passwordError
+        binding.loginButton.isEnabled = state.isLoginEnabled
+        binding.emailInputLayout.error = state.emailError
+        binding.passwordInputLayout.error = state.passwordError
 
         when {
             state.successMessage != null -> {
-                statusTextView.text = state.successMessage
-                statusTextView.setTextColor(ContextCompat.getColor(this, R.color.success))
+                binding.statusTextView.text = state.successMessage
+                binding.statusTextView.setTextColor(ContextCompat.getColor(this, R.color.success))
+                navigateToCatalog()
             }
 
             state.generalError != null -> {
-                statusTextView.text = state.generalError
-                statusTextView.setTextColor(ContextCompat.getColor(this, R.color.error))
+                binding.statusTextView.text = state.generalError
+                binding.statusTextView.setTextColor(ContextCompat.getColor(this, R.color.error))
             }
 
             else -> {
-                statusTextView.text = ""
+                binding.statusTextView.text = ""
             }
         }
+    }
+
+    private fun navigateToCatalog() {
+        if (hasNavigatedToCatalog) return
+
+        hasNavigatedToCatalog = true
+        startActivity(Intent(this, CatalogActivity::class.java))
+        finish()
+    }
+
+    private fun navigateToRegister() {
+        startActivity(Intent(this, RegisterActivity::class.java))
     }
 }

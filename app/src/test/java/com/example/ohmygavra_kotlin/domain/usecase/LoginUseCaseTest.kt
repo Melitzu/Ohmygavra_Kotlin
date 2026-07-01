@@ -32,5 +32,9 @@ class LoginUseCaseTest {
         override fun login(email: String, password: String): LoginResult {
             return LoginResult.Success(User(email = email, name = "Alumno Ohmygavra"))
         }
+
+        override fun register(name: String, email: String, password: String, age: Int): RegisterResult {
+            return RegisterResult.Success(User(email = email, name = name))
+        }
     }
 }

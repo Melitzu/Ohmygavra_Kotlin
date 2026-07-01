@@ -6,4 +6,24 @@
     <string name="password_hint">Contrasena</string>
     <string name="login_button">Entrar</string>
     <string name="login_test_user">Usuario de prueba: alumno@ohmygavra.cl / 123456</string>
+    <string name="create_account_button">Crear cuenta</string>
+    <string name="register_title">Crear cuenta</string>
+    <string name="register_subtitle">Completa tus datos para entrar al catalogo.</string>
+    <string name="name_hint">Nombre</string>
+    <string name="age_hint">Edad</string>
+    <string name="register_button">Registrarme</string>
+    <string name="already_have_account_button">Ya tengo cuenta</string>
+    <string name="catalog_title">Catalogo de joyas</string>
+    <string name="catalog_subtitle">Piezas seleccionadas de Ohmygavra</string>
+    <string name="logout_button">Cerrar sesion</string>
+    <string name="empty_catalog_title">No hay productos disponibles</string>
+    <string name="empty_catalog_message">Cuando el backend entregue productos, apareceran aqui.</string>
+    <string name="catalog_error_title">No se pudo cargar el catalogo</string>
+    <string name="retry_button">Reintentar</string>
+    <string name="product_price_format">$%1$d CLP</string>
+    <string name="product_stock_format">%1$d unidades disponibles</string>
+    <string name="product_without_stock">Sin stock disponible</string>
+    <string name="product_detail_title">Detalle de la joya</string>
+    <string name="back_button">Volver</string>
+    <string name="product_image_description">Imagen de la joya</string>
 </resources>

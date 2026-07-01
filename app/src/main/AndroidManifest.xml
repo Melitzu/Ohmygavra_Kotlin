@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ohmygavra_Kotlin">
         <activity
+            android:name=".presentation.register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.productdetail.ProductDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.catalog.CatalogActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
