@@ -3,6 +3,9 @@ package com.example.ohmygavra.backend
 import com.example.ohmygavra.backend.auth.data.repository.UserRepository
 import com.example.ohmygavra.backend.auth.route.authRoutes
 import com.example.ohmygavra.backend.auth.service.UserService
+import com.example.ohmygavra.backend.catalog.data.repository.ProductRepository
+import com.example.ohmygavra.backend.catalog.route.productRoutes
+import com.example.ohmygavra.backend.catalog.service.ProductService
 import com.example.ohmygavra.backend.config.DatabaseFactory
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
@@ -32,8 +35,11 @@ fun Application.module() {
 
     val userRepository = UserRepository()
     val userService = UserService(userRepository)
+    val productRepository = ProductRepository()
+    val productService = ProductService(productRepository)
 
     routing {
         authRoutes(userService)
+        productRoutes(productService)
     }
 }
