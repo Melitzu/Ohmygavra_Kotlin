@@ -36,4 +36,29 @@ class UserRepository {
             age = age
         )
     }
+
+    fun findByEmail(email: String): StoredUser? = transaction {
+        UsersTable
+            .selectAll()
+            .where { UsersTable.email eq email }
+            .limit(1)
+            .map { row ->
+                StoredUser(
+                    id = row[UsersTable.id].value,
+                    name = row[UsersTable.name],
+                    email = row[UsersTable.email],
+                    passwordHash = row[UsersTable.passwordHash],
+                    age = row[UsersTable.age]
+                )
+            }
+            .singleOrNull()
+    }
 }
+
+data class StoredUser(
+    val id: Int,
+    val name: String,
+    val email: String,
+    val passwordHash: String,
+    val age: Int
+)

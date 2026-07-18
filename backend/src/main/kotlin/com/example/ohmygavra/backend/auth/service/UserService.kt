@@ -1,6 +1,7 @@
 package com.example.ohmygavra.backend.auth.service
 
 import com.example.ohmygavra.backend.auth.data.repository.UserRepository
+import com.example.ohmygavra.backend.auth.dto.LoginRequest
 import com.example.ohmygavra.backend.auth.dto.RegisterRequest
 import com.example.ohmygavra.backend.auth.dto.UserResponse
 import org.mindrot.jbcrypt.BCrypt
@@ -26,6 +27,26 @@ class UserService(
             email = cleanEmail,
             passwordHash = passwordHash,
             age = request.age
+        )
+    }
+
+    fun login(request: LoginRequest): UserResponse {
+        val cleanEmail = request.email.trim()
+
+        validateEmail(cleanEmail)
+
+        val storedUser = userRepository.findByEmail(cleanEmail)
+            ?: throw InvalidCredentialsException("Credenciales invalidas.")
+
+        if (!BCrypt.checkpw(request.password, storedUser.passwordHash)) {
+            throw InvalidCredentialsException("Credenciales invalidas.")
+        }
+
+        return UserResponse(
+            id = storedUser.id,
+            name = storedUser.name,
+            email = storedUser.email,
+            age = storedUser.age
         )
     }
 
